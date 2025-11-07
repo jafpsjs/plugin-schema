@@ -1,28 +1,43 @@
 import fp from "fastify-plugin";
-import type {} from "fastify";
+import { SchemaController, schemaErrorFormatter } from "#fastify";
+import { validationErrorFormatter } from "#formatter";
+import { invalidValueErrorSchema } from "#schema";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import type { FastifyInstance } from "fastify";
 
 
 export type TemplatePluginOptions = {
-  value: string;
+  /**
+   * Use `default` in JSON schema.
+   *
+   * Default to `true`.
+   */
+  useDefault?: boolean;
+
+  /**
+   *  {@link FastifyInstance.getSchemas} as references.
+   *
+   * Default to `true`.
+   */
+  useReferences?: boolean;
 };
 
-export const name = "@jafps/plugin-template";
+export const name = "@jafps/plugin-schema";
 
 export default fp<TemplatePluginOptions>(
   async (app, opts) => {
-    const { value } = opts;
-    app.decorate("hello", () => value);
+    const { useDefault, useReferences } = opts;
+    const controller = new SchemaController(app, { useDefault, useReferences });
+    app.setValidatorCompiler(schema => controller.deserialize(schema));
+    app.setSerializerCompiler(schema => controller.serialize(schema));
+    app.setSchemaErrorFormatter(schemaErrorFormatter);
+    app.errorSchemas.addFormatter(validationErrorFormatter);
+    app.errorSchemas.addSchema(422, invalidValueErrorSchema);
   },
   {
     decorators: {},
-    dependencies: [],
+    dependencies: ["@jafps/plugin-error"],
     fastify: "5.x",
     name
   }
 );
-
-declare module "fastify" {
-  interface FastifyInstance {
-    readonly hello: () => string;
-  }
-}
