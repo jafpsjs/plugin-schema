@@ -1,7 +1,7 @@
 {
   "name": "@jafps/plugin-schema",
   "version": "1.0.0",
-  "description": "",
+  "description": "Fastify plugin for using typebox to handle JSON schemas.",
   "type": "module",
   "scripts": {
     "prebuild": "rimraf dist",
