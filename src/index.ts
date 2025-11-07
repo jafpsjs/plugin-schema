@@ -6,7 +6,7 @@ import { invalidValueErrorSchema } from "#schema";
 import type { FastifyInstance } from "fastify";
 
 
-export type TemplatePluginOptions = {
+export type SchemaPluginOptions = {
   /**
    * Use `default` in JSON schema.
    *
@@ -24,7 +24,7 @@ export type TemplatePluginOptions = {
 
 export const name = "@jafps/plugin-schema";
 
-export default fp<TemplatePluginOptions>(
+export default fp<SchemaPluginOptions>(
   async (app, opts) => {
     const { useDefault, useReferences } = opts;
     const controller = new SchemaController(app, { useDefault, useReferences });
