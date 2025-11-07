@@ -48,6 +48,7 @@
   ],
   "devDependencies": {
     "@fastify/swagger": "^9.5.2",
+    "@jafps/plugin-error": "^1.0.0",
     "@joshuaavalon/eslint-config-typescript": "^10.0.0",
     "@types/node": "^24.9.1",
     "eslint": "^9.38.0",
@@ -57,7 +58,6 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "@jafps/plugin-error": "^1.0.0",
     "fastify-plugin": "^5.1.0",
     "typebox": "^1.0.43"
   }
