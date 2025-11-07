@@ -13,12 +13,12 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jafpsjs/plugin-template.git"
+    "url": "git+https://github.com/jafpsjs/plugin-schema.git"
   },
   "bugs": {
-    "url": "https://github.com/jafpsjs/plugin-template/issues"
+    "url": "https://github.com/jafpsjs/plugin-schema/issues"
   },
-  "homepage": "https://github.com/jafpsjs/plugin-template#readme",
+  "homepage": "https://github.com/jafpsjs/plugin-schema#readme",
   "imports": {
     "#error": {
       "import": "./dist/error/index.js"
