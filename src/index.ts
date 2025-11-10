@@ -4,7 +4,7 @@ import { validationErrorFormatter } from "#formatter";
 import { invalidValueErrorSchema } from "#schema";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { FastifyInstance } from "fastify";
-import type { StaticDecode, TProperties, TSchema, TSchemaOptions } from "typebox";
+import type { StaticDecode, TProperties, TSchema } from "typebox";
 
 export type SchemaPluginOptions = {
   /**
