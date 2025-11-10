@@ -3,8 +3,8 @@ import { SchemaController, schemaErrorFormatter } from "#fastify";
 import { validationErrorFormatter } from "#formatter";
 import { invalidValueErrorSchema } from "#schema";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import type { FastifyInstance, FastifySchemas } from "fastify";
-import type { StaticDecode, TSchema, TSchemaOptions } from "typebox";
+import type { FastifyInstance } from "fastify";
+import type { StaticDecode, TProperties, TSchema, TSchemaOptions } from "typebox";
 
 export type SchemaPluginOptions = {
   /**
@@ -44,11 +44,11 @@ export default fp<SchemaPluginOptions>(
 
 declare module "fastify" {
   interface FastifyTypeProviderDefault {
-    serializer: this["schema"] extends TSchema & TSchemaOptions ? StaticDecode<this["schema"], FastifySchemas> : unknown;
-    validator: this["schema"] extends TSchema & TSchemaOptions ? StaticDecode<this["schema"], FastifySchemas> : unknown;
+    serializer: this["schema"] extends TSchema ? StaticDecode<this["schema"], FastifySchemas> : unknown;
+    validator: this["schema"] extends TSchema ? StaticDecode<this["schema"], FastifySchemas> : unknown;
   }
 
-  interface FastifySchemas extends Record<string, TSchema & TSchemaOptions> {
+  interface FastifySchemas extends TProperties {
 
   }
 

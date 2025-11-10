@@ -6,6 +6,17 @@ import { Type } from "typebox";
 import schemaPlugin from "../index.js";
 import type { FastifyInstance } from "fastify";
 
+const bodySchema = Type.Object({
+  a: Type.String(),
+  b: Type.String()
+}, { $id: "b" });
+
+declare module "fastify" {
+  interface FastifySchemas {
+    b: typeof bodySchema;
+  }
+}
+
 describe("@jafps/plugin-schema", () => {
   let app: FastifyInstance;
 
@@ -13,15 +24,9 @@ describe("@jafps/plugin-schema", () => {
     app = await fastify();
     await app.register(errorPlugin);
     await app.register(schemaPlugin);
+    app.addSchema(bodySchema);
 
-    app.post("/validate", {
-      schema: {
-        body: Type.Object({
-          a: Type.String(),
-          b: Type.String()
-        })
-      }
-    }, async (_req, res) => {
+    app.post("/validate", { schema: { body: Type.Ref("b") } }, async (_req, res) => {
       res.send({ success: true });
     });
   });
