@@ -47,7 +47,6 @@
     "!dist/**/__tests__/**/*"
   ],
   "devDependencies": {
-    "@fastify/swagger": "^9.5.2",
     "@jafps/plugin-error": "^1.0.0",
     "@joshuaavalon/eslint-config-typescript": "^10.0.0",
     "@types/node": "^24.9.1",
