@@ -42,6 +42,8 @@ export default fp<SchemaPluginOptions>(
   }
 );
 
+export { ValidationError } from "#error";
+
 declare module "fastify" {
   interface FastifyTypeProviderDefault {
     serializer: this["schema"] extends TSchema ? StaticDecode<this["schema"], FastifySchemas> : unknown;
