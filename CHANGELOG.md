@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/jafpsjs/plugin-schema/compare/v1.0.0...v1.1.0) (2025-11-18)
+
+
+### Features
+
+* Export ValidationError ([d0dfe55](https://github.com/jafpsjs/plugin-schema/commit/d0dfe55ce2286e8e7c3471710cc4dba69af86cf5))
+
 ## 1.0.0 (2025-11-11)
 
 
