@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/jafpsjs/plugin-schema/compare/v1.1.0...v1.1.1) (2025-11-28)
+
+
+### Bug Fixes
+
+* Migrate to pnpm ([91bc8f7](https://github.com/jafpsjs/plugin-schema/commit/91bc8f79a8aab7d46ade2cb03dbd03bfd0140b32))
+
 ## [1.1.0](https://github.com/jafpsjs/plugin-schema/compare/v1.0.0...v1.1.0) (2025-11-18)
 
 
