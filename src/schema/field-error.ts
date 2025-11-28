@@ -6,4 +6,7 @@ export const fieldErrorSchema = Type.Object({
   message: Type.String({ examples: ["Expected string"] })
 }, { additionalProperties: false });
 
+/* node:coverage disable */
 export type FieldError = Static<typeof fieldErrorSchema>;
+
+/* node:coverage enable */

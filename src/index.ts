@@ -6,6 +6,7 @@ import { invalidValueErrorSchema } from "#schema";
 import type { FastifyInstance } from "fastify";
 import type { StaticDecode, TProperties, TSchema } from "typebox";
 
+/* node:coverage disable */
 export type SchemaPluginOptions = {
   /**
    * Use `default` in JSON schema.
@@ -21,6 +22,8 @@ export type SchemaPluginOptions = {
    */
   useReferences?: boolean;
 };
+
+/* node:coverage enable */
 
 export const name = "@jafps/plugin-schema";
 
@@ -44,6 +47,7 @@ export default fp<SchemaPluginOptions>(
 
 export { ValidationError } from "#error";
 
+/* node:coverage disable */
 declare module "fastify" {
   interface FastifyTypeProviderDefault {
     serializer: this["schema"] extends TSchema ? StaticDecode<this["schema"], FastifySchemas> : unknown;
@@ -59,3 +63,6 @@ declare module "fastify" {
     getSchemas(): FastifySchemas;
   }
 }
+
+
+/* node:coverage enable */

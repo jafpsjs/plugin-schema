@@ -15,4 +15,7 @@ export const invalidValueErrorSchema = Type.Object({
   title: "Invalid Value"
 });
 
+/* node:coverage disable */
 export type InvalidValueError = Static<typeof invalidValueErrorSchema>;
+
+/* node:coverage enable */
