@@ -185,4 +185,28 @@ describe("SchemaSerializer", () => {
     const res = json.value;
     assert.equal(res.success, true);
   });
+
+  it("should throw on same $id added", async () => {
+    const app = await fastify();
+    const bodySchema = Type.Options(Type.Object({
+      a: Type.String(),
+      b: Type.String()
+    }), { $id: "b" });
+    const serializer = new SchemaController(app);
+    serializer.addSchema(bodySchema);
+    assert.throws(() => {
+      serializer.addSchema(bodySchema);
+    });
+  });
+
+  it("should return schema on $id", async () => {
+    const app = await fastify();
+    const bodySchema = Type.Options(Type.Object({
+      a: Type.String(),
+      b: Type.String()
+    }), { $id: "b" });
+    const serializer = new SchemaController(app);
+    serializer.addSchema(bodySchema);
+    assert.equal(serializer.getSchema("b"), bodySchema);
+  });
 });

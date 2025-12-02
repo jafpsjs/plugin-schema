@@ -27,7 +27,7 @@ export class SchemaController {
 
   public deserialize(routeSchema: FastifyRouteSchemaDef<TSchema>): FastifyValidationResult {
     const { schema } = routeSchema;
-    const ctx = (this.useReferences ? this.schemas : {}) as TProperties;
+    const ctx = (this.useReferences ? this.getSchemas() : {}) as TProperties;
     const compiledSchema = Compile(ctx, schema);
     return input => {
       const value = this.useDefault ? compiledSchema.Default(input) : input;
@@ -46,7 +46,7 @@ export class SchemaController {
 
   public serialize(routeSchema: FastifyRouteSchemaDef<TSchema>): (data: unknown) => string {
     const { schema } = routeSchema;
-    const ctx = (this.useReferences ? this.schemas : {}) as TProperties;
+    const ctx = (this.useReferences ? this.getSchemas() : {}) as TProperties;
     const compiledSchema = Compile(ctx, schema);
     return data => {
       let value: unknown;
@@ -70,8 +70,7 @@ export class SchemaController {
     if (this.schemas[id]) {
       throw new Error(`Same schema $id has already added. (${id})`);
     }
-    const { $id, ...others } = schema;
-    this.schemas[id] = others;
+    this.schemas[id] = schema;
   }
 
   public getSchema<T extends keyof FastifySchemas>(id: T): FastifySchemas[T] {
