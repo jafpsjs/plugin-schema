@@ -24,7 +24,7 @@ describe("@jafps/plugin-schema", () => {
     app = await fastify();
     await app.register(errorPlugin);
     await app.register(schemaPlugin);
-    app.addSchema(bodySchema);
+    app.schemas.addSchema(bodySchema);
 
     app.post("/validate", { schema: { body: Type.Ref("b") } }, async (_req, res) => {
       res.send({ success: true });

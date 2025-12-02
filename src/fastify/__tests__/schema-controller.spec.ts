@@ -47,8 +47,8 @@ describe("SchemaSerializer", () => {
   it("should serialize with references", async () => {
     const app = await fastify();
     const refSchema = Type.Object({ success: Type.Literal(true) }, { $id: "result" });
-    app.addSchema(refSchema);
     const serializer = new SchemaController(app);
+    serializer.addSchema(refSchema as any);
     const schema = Type.Ref("result");
     const serializeFn = serializer.serialize({ method: "GET", schema, url: "/" });
     const json = serializeFn({ success: true });
@@ -59,8 +59,8 @@ describe("SchemaSerializer", () => {
   it("should not serialize without references", async () => {
     const app = await fastify();
     const refSchema = Type.Object({ success: Type.Literal(true) }, { $id: "result" });
-    app.addSchema(refSchema);
     const serializer = new SchemaController(app, { useReferences: false });
+    serializer.addSchema(refSchema as any);
     const schema = Type.Ref("result");
     const serializeFn = serializer.serialize({ method: "GET", schema, url: "/" });
     assert.throws(() => serializeFn({ success: true }));
@@ -136,8 +136,9 @@ describe("SchemaSerializer", () => {
   it("should deserialize with references", async () => {
     const app = await fastify();
     const refSchema = Type.Object({ success: Type.Literal(true) }, { $id: "result" });
-    app.addSchema(refSchema);
     const serializer = new SchemaController(app);
+
+    serializer.addSchema(refSchema as any);
     const schema = Type.Ref("result");
     const serializeFn = serializer.deserialize({ method: "GET", schema, url: "/" });
     const json = await serializeFn({ success: true });
@@ -148,8 +149,9 @@ describe("SchemaSerializer", () => {
   it("should not deserialize with references", async () => {
     const app = await fastify();
     const refSchema = Type.Object({ success: Type.Literal(true) }, { $id: "result" });
-    app.addSchema(refSchema);
     const serializer = new SchemaController(app, { useReferences: false });
+
+    serializer.addSchema(refSchema as any);
     const schema = Type.Ref("result");
     const serializeFn = serializer.deserialize({ method: "GET", schema, url: "/" });
     const json = await serializeFn({ success: true });
