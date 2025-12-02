@@ -31,6 +31,7 @@ export default fp<SchemaPluginOptions>(
   async (app, opts) => {
     const { useDefault, useReferences } = opts;
     const controller = new SchemaController(app, { useDefault, useReferences });
+    app.decorate("schemas", controller);
     app.setValidatorCompiler(schema => controller.deserialize(schema));
     app.setSerializerCompiler(schema => controller.serialize(schema));
     app.setSchemaErrorFormatter(schemaErrorFormatter);
@@ -59,8 +60,7 @@ declare module "fastify" {
   }
 
   interface FastifyInstance {
-    getSchema<T extends keyof FastifySchemas>(schemaId: T): FastifySchemas[T];
-    getSchemas(): FastifySchemas;
+    schemas: SchemaController;
   }
 }
 

@@ -12,8 +12,8 @@ importers:
         specifier: ^5.1.0
         version: 5.1.0
       typebox:
-        specifier: ^1.0.43
-        version: 1.0.58
+        specifier: ^1.0.60
+        version: 1.0.60
     devDependencies:
       '@jafps/plugin-error':
         specifier: ^1.0.1
@@ -695,8 +695,8 @@ packages:
     resolution: {integrity: sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==}
     engines: {node: '>= 0.8.0'}
 
-  typebox@1.0.58:
-    resolution: {integrity: sha512-k5zPE5pTAjQRR6KLVn1C09ShIDyBpj2BETPtCFGQL1TFOTAMjLPf/IxE6vogMOdh2e0BJz1SoZ9YlfCEfcC+cw==}
+  typebox@1.0.60:
+    resolution: {integrity: sha512-O1cnkQLCnKmOPjb5s6hUQCWhQYMu2p7OiSmDv4abie31CzmcXlfqYXAbTEBRSe1+fLC79Xjxn3wL14V8Nb0w5A==}
 
   typescript-eslint@8.48.0:
     resolution: {integrity: sha512-fcKOvQD9GUn3Xw63EgiDqhvWJ5jsyZUaekl3KVpGsDJnN46WJTe3jWxtQP9lMZm1LJNkFLlTaWAxK2vUQR+cqw==}
@@ -820,7 +820,7 @@ snapshots:
   '@jafps/plugin-error@1.0.1':
     dependencies:
       fastify-plugin: 5.1.0
-      typebox: 1.0.58
+      typebox: 1.0.60
 
   '@joshuaavalon/eslint-config-javascript@10.0.0(eslint@9.39.1)(typescript@5.9.3)':
     dependencies:
@@ -1414,7 +1414,7 @@ snapshots:
     dependencies:
       prelude-ls: 1.2.1
 
-  typebox@1.0.58: {}
+  typebox@1.0.60: {}
 
   typescript-eslint@8.48.0(eslint@9.39.1)(typescript@5.9.3):
     dependencies:

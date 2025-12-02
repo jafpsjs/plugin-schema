@@ -6,10 +6,10 @@ import { Type } from "typebox";
 import schemaPlugin from "../index.js";
 import type { FastifyInstance } from "fastify";
 
-const bodySchema = Type.Object({
+const bodySchema = Type.Options(Type.Object({
   a: Type.String(),
   b: Type.String()
-}, { $id: "b" });
+}), { $id: "b" });
 
 declare module "fastify" {
   interface FastifySchemas {
