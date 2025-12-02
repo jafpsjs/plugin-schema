@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/jafpsjs/plugin-schema/compare/v1.1.1...v1.2.0) (2025-12-02)
+
+
+### Features
+
+* Use custom schema context ([298ec76](https://github.com/jafpsjs/plugin-schema/commit/298ec768acbc0767aafe9fb0e2fbcbe6dd05407b))
+
 ## [1.1.1](https://github.com/jafpsjs/plugin-schema/compare/v1.1.0...v1.1.1) (2025-11-28)
 
 
