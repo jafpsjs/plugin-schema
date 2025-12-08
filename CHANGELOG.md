@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/jafpsjs/plugin-schema/compare/v1.2.0...v1.2.1) (2025-12-08)
+
+
+### Bug Fixes
+
+* Use Pipeline to better handle encode and decode ([ba7a923](https://github.com/jafpsjs/plugin-schema/commit/ba7a923a13df64580dc57daf6a2cd6a4cd8e0371))
+
 ## [1.2.0](https://github.com/jafpsjs/plugin-schema/compare/v1.1.1...v1.2.0) (2025-12-02)
 
 
