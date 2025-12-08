@@ -1,6 +1,6 @@
 {
   "name": "@jafps/plugin-schema",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Fastify plugin for using typebox to handle JSON schemas.",
   "type": "module",
   "scripts": {
