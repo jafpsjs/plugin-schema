@@ -9,13 +9,6 @@ import type { StaticDecode, TProperties, TSchema } from "typebox";
 /* node:coverage disable */
 export type SchemaPluginOptions = {
   /**
-   * Use `default` in JSON schema.
-   *
-   * Default to `true`.
-   */
-  useDefault?: boolean;
-
-  /**
    *  {@link FastifyInstance.getSchemas} as references.
    *
    * Default to `true`.
@@ -29,8 +22,8 @@ export const name = "@jafps/plugin-schema";
 
 export default fp<SchemaPluginOptions>(
   async (app, opts) => {
-    const { useDefault, useReferences } = opts;
-    const controller = new SchemaController(app, { useDefault, useReferences });
+    const { useReferences } = opts;
+    const controller = new SchemaController(app, { useReferences });
     app.decorate("schemas", controller);
     app.setValidatorCompiler(schema => controller.deserialize(schema));
     app.setSerializerCompiler(schema => controller.serialize(schema));

@@ -36,14 +36,6 @@ describe("SchemaSerializer", () => {
     assert.equal(res.success, true);
   });
 
-  it("should not serialize without default value", async () => {
-    const app = await fastify();
-    const serializer = new SchemaController(app, { useDefault: false });
-    const schema = Type.Object({ success: Type.Boolean() });
-    const serializeFn = serializer.serialize({ method: "GET", schema, url: "/" });
-    assert.throws(() => serializeFn({ }));
-  });
-
   it("should serialize with references", async () => {
     const app = await fastify();
     const refSchema = Type.Object({ success: Type.Literal(true) }, { $id: "result" });
@@ -121,16 +113,6 @@ describe("SchemaSerializer", () => {
     const json = await serializeFn({ });
     const res = json.value;
     assert.equal(res.success, true);
-  });
-
-  it("should not deserialize without default value", async () => {
-    const app = await fastify();
-    const serializer = new SchemaController(app, { useDefault: false });
-    const schema = Type.Object({ success: Type.Boolean() });
-    const serializeFn = serializer.deserialize({ method: "GET", schema, url: "/" });
-    const json = await serializeFn({ });
-    const res = json.error;
-    assert.ok(res instanceof ValidationError);
   });
 
   it("should deserialize with references", async () => {

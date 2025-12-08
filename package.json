@@ -6,7 +6,7 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "tsc",
-    "test": "node --enable-source-maps --experimental-test-coverage --test-coverage-exclude \"src/**/__tests__/*.ts\" --test \"./dist/**/__tests__/*.{spec,test}.js\"",
+    "test": "node --inspect --enable-source-maps --experimental-test-coverage --test-coverage-exclude \"src/**/__tests__/*.ts\" --test \"./dist/**/__tests__/*.{spec,test}.js\"",
     "lint": "eslint"
   },
   "author": "Joshua Avalon",
@@ -60,6 +60,6 @@
   },
   "dependencies": {
     "fastify-plugin": "^5.1.0",
-    "typebox": "^1.0.60"
+    "typebox": "^1.0.61"
   }
 }

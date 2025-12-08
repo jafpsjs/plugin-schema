@@ -1,26 +1,23 @@
 import { Compile } from "typebox/compile";
-import { Clone } from "typebox/value";
 import { ValidationError } from "#error";
+import { decode, encode } from "./typebox.js";
 import type { FastifyInstance, FastifySchemas } from "fastify";
 import type { FastifyRouteSchemaDef, FastifyValidationResult } from "fastify/types/schema.js";
 import type { TOptions, TProperties, TSchema } from "typebox";
 
 export type SchemaControllerOptions = {
-  useDefault?: boolean;
   useReferences?: boolean;
 };
 
 
 export class SchemaController {
   private readonly app: FastifyInstance;
-  private readonly useDefault: boolean;
   private readonly useReferences: boolean;
   private readonly schemas: FastifySchemas;
 
   public constructor(app: FastifyInstance, opts: SchemaControllerOptions = {}) {
-    const { useDefault = true, useReferences = true } = opts;
+    const { useReferences = true } = opts;
     this.app = app;
-    this.useDefault = useDefault;
     this.useReferences = useReferences;
     this.schemas = {} as FastifySchemas;
   }
@@ -30,13 +27,11 @@ export class SchemaController {
     const ctx = (this.useReferences ? this.getSchemas() : {}) as TProperties;
     const compiledSchema = Compile(ctx, schema);
     return input => {
-      const value = this.useDefault ? compiledSchema.Default(input) : input;
-      this.app.log.debug({ input, schema, useDefault: this.useDefault, value }, "Validate request");
+      let value: unknown;
+      this.app.log.debug({ input, schema }, "Validate request");
       try {
-        if (!compiledSchema.Check(value)) {
-          throw new Error("Invalid values");
-        }
-        return { value: compiledSchema.Clean(compiledSchema.Decode(value)) };
+        value = decode(ctx, schema, input);
+        return { value };
       } catch (_e) {
         const errors = [...compiledSchema.Errors(value)];
         return { error: new ValidationError(errors) };
@@ -48,20 +43,18 @@ export class SchemaController {
     const { schema } = routeSchema;
     const ctx = (this.useReferences ? this.getSchemas() : {}) as TProperties;
     const compiledSchema = Compile(ctx, schema);
-    return data => {
+    return input => {
       let value: unknown;
+      this.app.log.debug({ input, schema }, "Serialize response");
       try {
-        const cleaned = compiledSchema.Clean(Clone(data));
-        const defaultData = this.useDefault ? compiledSchema.Default(cleaned) : cleaned;
-        value = compiledSchema.Encode(defaultData);
+        value = encode(ctx, schema, input);
+        return JSON.stringify(value);
       } catch (_err) {
         const errors = [...compiledSchema.Errors(value)];
         const err = new ValidationError(errors);
         this.app.log.error({ err }, "Cannot serialize response to match response schema");
         throw err;
       }
-      this.app.log.debug({ input: data, schema, useDefault: this.useDefault, value }, "Serialize response");
-      return JSON.stringify(value);
     };
   }
 
