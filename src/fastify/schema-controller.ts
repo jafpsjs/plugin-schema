@@ -1,4 +1,4 @@
-import { Compile } from "typebox/compile";
+import { AssertError } from "typebox/value";
 import { ValidationError } from "#error";
 import { decode, encode } from "./typebox.js";
 import type { FastifyInstance, FastifySchemas } from "fastify";
@@ -25,16 +25,18 @@ export class SchemaController {
   public deserialize(routeSchema: FastifyRouteSchemaDef<TSchema>): FastifyValidationResult {
     const { schema } = routeSchema;
     const ctx = (this.useReferences ? this.getSchemas() : {}) as TProperties;
-    const compiledSchema = Compile(ctx, schema);
     return input => {
       let value: unknown;
       this.app.log.debug({ input, schema }, "Validate request");
       try {
         value = decode(ctx, schema, input);
         return { value };
-      } catch (_e) {
-        const errors = [...compiledSchema.Errors(value)];
-        return { error: new ValidationError(errors) };
+      } catch (err) {
+        this.app.log.error({ err }, "Cannot deserialize request to match request schema");
+        if (err instanceof AssertError) {
+          return { error: new ValidationError(err.cause.errors) };
+        }
+        return { error: new ValidationError([]) };
       }
     };
   }
@@ -42,18 +44,16 @@ export class SchemaController {
   public serialize(routeSchema: FastifyRouteSchemaDef<TSchema>): (data: unknown) => string {
     const { schema } = routeSchema;
     const ctx = (this.useReferences ? this.getSchemas() : {}) as TProperties;
-    const compiledSchema = Compile(ctx, schema);
     return input => {
       let value: unknown;
       this.app.log.debug({ input, schema }, "Serialize response");
       try {
         value = encode(ctx, schema, input);
         return JSON.stringify(value);
-      } catch (_err) {
-        const errors = [...compiledSchema.Errors(value)];
-        const err = new ValidationError(errors);
+      } catch (err) {
         this.app.log.error({ err }, "Cannot serialize response to match response schema");
-        throw err;
+        const error = err instanceof AssertError ? new ValidationError(err.cause.errors) : new ValidationError([]);
+        throw error;
       }
     };
   }
