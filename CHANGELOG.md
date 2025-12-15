@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.2](https://github.com/jafpsjs/plugin-schema/compare/v1.2.1...v1.2.2) (2025-12-15)
+
+
+### Bug Fixes
+
+* Improve error message ([94357f1](https://github.com/jafpsjs/plugin-schema/commit/94357f1340702c5d2cf518e46252f8481e5d4584))
+
 ## [1.2.1](https://github.com/jafpsjs/plugin-schema/compare/v1.2.0...v1.2.1) (2025-12-08)
 
 
