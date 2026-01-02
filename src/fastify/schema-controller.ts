@@ -32,7 +32,7 @@ export class SchemaController {
         value = decode(ctx, schema, input);
         return { value };
       } catch (err) {
-        this.app.log.error({ err }, "Cannot deserialize request to match request schema");
+        this.app.log.info({ err }, "Cannot deserialize request to match request schema");
         if (err instanceof AssertError) {
           return { error: new ValidationError(err.cause.errors) };
         }
@@ -51,7 +51,7 @@ export class SchemaController {
         value = encode(ctx, schema, input);
         return JSON.stringify(value);
       } catch (err) {
-        this.app.log.error({ err }, "Cannot serialize response to match response schema");
+        this.app.log.info({ err }, "Cannot serialize response to match response schema");
         const error = err instanceof AssertError ? new ValidationError(err.cause.errors) : new ValidationError([]);
         throw error;
       }
