@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.3](https://github.com/jafpsjs/plugin-schema/compare/v1.2.2...v1.2.3) (2026-01-02)
+
+
+### Bug Fixes
+
+* Lower log level for request and response for not matching schema ([cb5e3cc](https://github.com/jafpsjs/plugin-schema/commit/cb5e3cc130c150c32c05297134e9d5d6156ab970))
+
 ## [1.2.2](https://github.com/jafpsjs/plugin-schema/compare/v1.2.1...v1.2.2) (2025-12-15)
 
 
