@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.4](https://github.com/jafpsjs/plugin-schema/compare/v1.2.3...v1.2.4) (2026-01-15)
+
+
+### Bug Fixes
+
+* FastifyTypeProviderDefault types ([d9558f5](https://github.com/jafpsjs/plugin-schema/commit/d9558f5c9beb6ad516e6a514f1518f0503033767))
+
 ## [1.2.3](https://github.com/jafpsjs/plugin-schema/compare/v1.2.2...v1.2.3) (2026-01-02)
 
 
