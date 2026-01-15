@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.5](https://github.com/jafpsjs/plugin-schema/compare/v1.2.4...v1.2.5) (2026-01-15)
+
+
+### Bug Fixes
+
+* Undo FastifyTypeProviderDefault ([dc7f7b6](https://github.com/jafpsjs/plugin-schema/commit/dc7f7b65bdab377952632bca5dfdfb4e9270b683))
+
 ## [1.2.4](https://github.com/jafpsjs/plugin-schema/compare/v1.2.3...v1.2.4) (2026-01-15)
 
 
