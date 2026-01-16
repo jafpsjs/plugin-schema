@@ -3,7 +3,7 @@ import { ValidationError } from "#error";
 import { decode, encode } from "./typebox.js";
 import type { FastifyInstance, FastifySchemas } from "fastify";
 import type { FastifyRouteSchemaDef, FastifyValidationResult } from "fastify/types/schema.js";
-import type { TOptions, TProperties, TSchema } from "typebox";
+import type { TProperties, TSchema } from "typebox";
 
 export type SchemaControllerOptions = {
   useReferences?: boolean;
@@ -58,7 +58,16 @@ export class SchemaController {
     };
   }
 
-  public addSchema<T extends keyof FastifySchemas>(schema: TOptions<FastifySchemas[T], { $id: string }>): void {
+  public addSchema<T extends keyof FastifySchemas>(schema: FastifySchemas[T]): void {
+    if (!("$id" in schema)) {
+      throw new Error("$id is not defined in schema.");
+    }
+    if (typeof schema.$id !== "string") {
+      throw new Error(`$id is not string. (${typeof schema.$id})`);
+    }
+    if (!schema.$id) {
+      throw new Error("$id is not empty");
+    }
     const id = schema.$id;
     if (this.schemas[id]) {
       throw new Error(`Same schema $id has already added. (${id})`);
