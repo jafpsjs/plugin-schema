@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.6](https://github.com/jafpsjs/plugin-schema/compare/v1.2.5...v1.2.6) (2026-01-16)
+
+
+### Bug Fixes
+
+* Use runtime check instead of type check because of typebox limitation ([bc2a0b9](https://github.com/jafpsjs/plugin-schema/commit/bc2a0b948f12258f891aa8e0b72796393b4dc939))
+
 ## [1.2.5](https://github.com/jafpsjs/plugin-schema/compare/v1.2.4...v1.2.5) (2026-01-15)
 
 
