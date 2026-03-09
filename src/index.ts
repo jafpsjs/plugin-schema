@@ -42,6 +42,8 @@ export default fp<SchemaPluginOptions>(
 export { ValidationError } from "#error";
 
 /* node:coverage disable */
+export type * from "#type";
+
 declare module "fastify" {
   interface FastifyTypeProviderDefault {
     serializer: this["schema"] extends TSchema ? StaticDecode<this["schema"], FastifySchemas> : unknown;
@@ -56,6 +58,5 @@ declare module "fastify" {
     schemas: SchemaController;
   }
 }
-
 
 /* node:coverage enable */

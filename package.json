@@ -31,6 +31,9 @@
     },
     "#schema": {
       "import": "./dist/schema/index.js"
+    },
+    "#type": {
+      "import": "./dist/type.js"
     }
   },
   "exports": {

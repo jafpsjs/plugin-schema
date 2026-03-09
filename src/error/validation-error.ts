@@ -2,7 +2,6 @@ import { Clean, Clone } from "typebox/value";
 import { fieldErrorSchema } from "#schema";
 import type { FieldError } from "#schema";
 
-
 export class ValidationError extends Error {
   public readonly fieldErrors: FieldError[];
 
