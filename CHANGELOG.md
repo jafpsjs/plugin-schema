@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.8](https://github.com/jafpsjs/plugin-schema/compare/v1.2.7...v1.2.8) (2026-03-09)
+
+
+### Bug Fixes
+
+* Add type utilities for schemas ([2698c2c](https://github.com/jafpsjs/plugin-schema/commit/2698c2c3a4cb4d415bbd75735fdbec0f9ee093ba))
+
 ## [1.2.7](https://github.com/jafpsjs/plugin-schema/compare/v1.2.6...v1.2.7) (2026-03-04)
 
 
