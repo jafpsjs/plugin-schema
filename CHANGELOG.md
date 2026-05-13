@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.9](https://github.com/jafpsjs/plugin-schema/compare/v1.2.8...v1.2.9) (2026-05-13)
+
+
+### Bug Fixes
+
+* Update dependencies ([f56f2ad](https://github.com/jafpsjs/plugin-schema/commit/f56f2ad6c24a7b448ee90f95f8eb3da1ad0fbdbc))
+
 ## [1.2.8](https://github.com/jafpsjs/plugin-schema/compare/v1.2.7...v1.2.8) (2026-03-09)
 
 
