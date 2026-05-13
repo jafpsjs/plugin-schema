@@ -40,7 +40,7 @@ describe("SchemaSerializer", () => {
     const app = await fastify();
     const refSchema = Type.Object({ success: Type.Literal(true) }, { $id: "result" });
     const serializer = new SchemaController(app);
-    serializer.addSchema(refSchema as any);
+    serializer.addSchema(refSchema);
     const schema = Type.Ref("result");
     const serializeFn = serializer.serialize({ method: "GET", schema, url: "/" });
     const json = serializeFn({ success: true });
@@ -52,7 +52,7 @@ describe("SchemaSerializer", () => {
     const app = await fastify();
     const refSchema = Type.Object({ success: Type.Literal(true) }, { $id: "result" });
     const serializer = new SchemaController(app, { useReferences: false });
-    serializer.addSchema(refSchema as any);
+    serializer.addSchema(refSchema);
     const schema = Type.Ref("result");
     const serializeFn = serializer.serialize({ method: "GET", schema, url: "/" });
     assert.throws(() => serializeFn({ success: true }));
@@ -120,7 +120,7 @@ describe("SchemaSerializer", () => {
     const refSchema = Type.Object({ success: Type.Literal(true) }, { $id: "result" });
     const serializer = new SchemaController(app);
 
-    serializer.addSchema(refSchema as any);
+    serializer.addSchema(refSchema);
     const schema = Type.Ref("result");
     const serializeFn = serializer.deserialize({ method: "GET", schema, url: "/" });
     const json = await serializeFn({ success: true });
@@ -133,7 +133,7 @@ describe("SchemaSerializer", () => {
     const refSchema = Type.Object({ success: Type.Literal(true) }, { $id: "result" });
     const serializer = new SchemaController(app, { useReferences: false });
 
-    serializer.addSchema(refSchema as any);
+    serializer.addSchema(refSchema);
     const schema = Type.Ref("result");
     const serializeFn = serializer.deserialize({ method: "GET", schema, url: "/" });
     const json = await serializeFn({ success: true });
